@@ -24,14 +24,16 @@ echo "Configure ansible Ip is : ${1}" >> ${log_path}
 sudo chmod 777 /etc/ansible/hosts
 sudo echo -e "[webservers]\n${1}" >>/etc/ansible/hosts
 }
+install_svn() {
+sudo apt-get update -y
+sudo apt-get install -y subversion
+}
 
 wordpress_install() {
 cd /home/${1}
-#git clone https://github.com/sayali0512/wordpress_playbook.git
 # the below command will download ansible playbook folder form the github repo. 
 # the ansible folder must be in master to download. 
-svn checkout https://github.com/ummadisudhakar/LAMP/trunk/wordpress_ansible_playbook
-
+svn checkout https://github.com/sayosh0512/playbook/trunk/MAT-32-wordpress/wordpress_ansible_playbook
 echo "username is : ${1}" >> ${log_path}
 echo "dbservername is : ${2}" ${log_path}
 echo "dbusername is : ${3}" >> ${log_path}
@@ -57,6 +59,7 @@ sudo sed -i "s~#   StrictHostKeyChecking ask~   StrictHostKeyChecking no~" /etc/
 sudo systemctl restart ssh
 install_ansible >> ${log_path}
 configure_ansible ${1} ${3} >> ${log_path}
+install_svn
 wordpress_install ${3} ${4} ${5} ${6} ${7} ${2} ${1} >> ${log_path}
 sudo sed -i "s~   StrictHostKeyChecking no~#   StrictHostKeyChecking ask~" /etc/ssh/ssh_config 
 sudo systemctl restart ssh
