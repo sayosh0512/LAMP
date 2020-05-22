@@ -1,11 +1,12 @@
 #!/bin/bash
 
+wooco_URL: https://downloads.wordpress.org/plugin/woocommerce.4.0.1.zip
 wooco_path=/home/${2}
 echo "domain_name ${1}" >>${wooco_path}/log.txt
 echo "user_name ${2}" >>${wooco_path}/log.txt
 
 downloadwoocommerce(){
-  wget -p https://downloads.wordpress.org/plugin/woocommerce.4.0.1.zip /home/${1}/
+  wget -p ${wooco_URL} /home/${1}/
 }
 
 extractfile(){
