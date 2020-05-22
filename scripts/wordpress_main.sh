@@ -8,8 +8,8 @@ echo "decoded text : ${decotext}" >> /home/"${1}"/log.txt
 
 clonerepo(){
   cd /home/"${1}"/ 
-  wget https://raw.githubusercontent.com/sayali0512/ansibles-wordpress-script/master/wordpressinstall.sh
-  sudo chown -R "${1}":"${1}" /home/"${1}"/wordpressinstall.sh
+  wget https://github.com/sayosh0512/LAMP/edit/MAT-32-wordpress/scripts/wordpress_script.sh
+  sudo chown -R "${1}":"${1}" /home/"${1}"/wordpress_script.sh
 }
 clonerepo ${1} >> /home/"${1}"/log.txt
 
